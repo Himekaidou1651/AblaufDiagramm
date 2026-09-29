@@ -1,0 +1,10 @@
+docs/
+node_modules/
+release/
+dist/assets/
+dist/index.html
+.tmp-tests/
+.vscode/
+/saves/
+coresave/
+AD.exe

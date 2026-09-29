@@ -1,0 +1,381 @@
+/**
+ * @file modal.css - 弹窗、设置面板、Toggle 开关公共样式
+ * @brief 供 HomeMenu.vue 和 Editor.vue 共用的模态框与设置UI样式。
+ *        作为全局（非 scoped）CSS 导入。
+ */
+
+/* ===== 弹窗遮罩 ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== 弹窗面板 ===== */
+.modal-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.2s ease;
+}
+
+.modal-panel:not(.help-modal),
+.modal-panel:not(.help-modal) button,
+.modal-panel:not(.help-modal) input,
+.modal-panel:not(.help-modal) select,
+.modal-panel:not(.help-modal) textarea,
+.modal-panel:not(.help-modal) table,
+.modal-panel:not(.help-modal) th,
+.modal-panel:not(.help-modal) td,
+.modal-panel:not(.help-modal) kbd,
+.modal-panel:not(.help-modal) code,
+.modal-panel:not(.help-modal) pre {
+  font-family: var(--font-serif);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.about-modal { width: 420px; }
+.settings-modal { width: 420px; }
+.help-modal { width: 900px; }
+.user-modal { width: min(680px, 92vw); }
+.save-name-modal { width: min(440px, 92vw); }
+.confirm-modal { width: min(460px, 92vw); }
+
+/* ===== 弹窗头部 ===== */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-family: var(--font-serif);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--text-body);
+  background: var(--bg-element-hover);
+}
+
+/* ===== 弹窗主体/底部 ===== */
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-default);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-btn {
+  padding: 8px 24px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--bg-element);
+  color: var(--text-body);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: var(--font-serif);
+  transition: all 0.15s;
+}
+
+.modal-btn:hover {
+  background: var(--bg-element-hover);
+}
+
+.modal-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.modal-btn--primary {
+  border-color: var(--accent-blue);
+  background: var(--accent-blue);
+  color: #fff;
+}
+
+.modal-btn--primary:hover {
+  filter: brightness(1.08);
+  background: var(--accent-blue);
+}
+
+.modal-btn--danger {
+  border-color: #b94747;
+  background: #b94747;
+  color: #fff;
+}
+
+.modal-btn--danger:hover {
+  background: #cf5555;
+}
+
+/* ===== 设置面板 ===== */
+.settings-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+}
+
+/* 带描述文字的设置项：flex-wrap 让描述在标签下方换行 */
+.setting-item-wrap {
+  flex-wrap: wrap;
+}
+
+.setting-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.setting-label {
+  color: var(--text-body);
+  font-size: 0.92rem;
+}
+
+.setting-desc {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.setting-select {
+  background: var(--bg-element);
+  border: 1px solid var(--border-light);
+  color: var(--text-body);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.setting-select:focus {
+  outline: 1px solid var(--accent-blue);
+}
+
+.setting-color {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 2px;
+  cursor: pointer;
+  background: var(--bg-element);
+}
+
+.setting-color::-webkit-color-swatch-wrapper { padding: 0; }
+.setting-color::-webkit-color-swatch { border: none; border-radius: 4px; }
+
+.setting-color-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.setting-color-value {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.setting-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.setting-action {
+  padding: 6px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: var(--bg-element);
+  color: var(--text-body);
+  font-size: 0.82rem;
+  font-family: var(--font-serif);
+  cursor: pointer;
+}
+
+.setting-action:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ===== Toggle 开关 ===== */
+.toggle-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  width: 44px;
+  height: 24px;
+  background: var(--bg-element);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.toggle-input:checked + .toggle-track {
+  background: var(--accent-purple);
+  border-color: var(--accent-purple);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--text-body);
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle-input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* ===== 快捷键速查面板 ===== */
+.shortcut-modal { width: 480px; }
+
+.shortcut-body {
+  padding: 12px 20px;
+}
+
+.shortcut-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shortcut-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-dim);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.shortcut-table td {
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--text-body);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.shortcut-table tr:last-child td {
+  border-bottom: none;
+}
+
+.shortcut-key {
+  width: 180px;
+}
+
+.shortcut-key kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-family: var(--font-serif);
+  color: var(--text-body);
+  background: var(--bg-element);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .help-modal {
+    width: 95vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-modal,
+  .settings-modal {
+    width: 90vw;
+  }
+
+  .modal-panel {
+    max-height: 90vh;
+    border-radius: 8px;
+  }
+
+  .modal-body {
+    padding: 14px;
+  }
+
+  .modal-header {
+    padding: 12px 14px;
+  }
+
+  .modal-footer {
+    padding: 10px 14px;
+  }
+}
